@@ -22,9 +22,19 @@ module.exports = function getHeadingPlugin(source) {
   });
 
   if (headingKey >= 0) {
-    heading = ast.children[headingKey].children[0] &&
-      ast.children[headingKey].children[0].value;
+    if (options.remove) {
+      /* Istead of return heading, remove heading and return markdown */
+      delete ast.children[headingKey];
+      return mdast.stringify(ast);
+    } else {
+      heading = ast.children[headingKey].children[0] &&
+        ast.children[headingKey].children[0].value;
+    }
   } else {
+    if (options.remove) {
+      return mdast.stringify(ast);
+    }
+
     heading = options.default || '';
   }
 

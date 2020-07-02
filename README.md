@@ -40,6 +40,7 @@ Options
 --
 
 - **commonmark** Use common markdown features (default: *false*)
+- **remove** Remove heading and return modified markdown text
 
 Author and license
 --
